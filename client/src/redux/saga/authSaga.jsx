@@ -3,7 +3,6 @@ import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { LOGIN_FAILURE, LOGIN_SUCCESS, LOGIN_REQUEST } from '../types';
 
 const loginUserAPI = loginData => {
-  console.log('loginData', loginData);
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +14,6 @@ const loginUserAPI = loginData => {
 function* loginUser(action) {
   try {
     const result = yield call(loginUserAPI, action.payload);
-    console.log(result);
     yield put({
       type: LOGIN_SUCCESS,
       payload: result.data,
@@ -23,7 +21,7 @@ function* loginUser(action) {
   } catch (e) {
     yield put({
       type: LOGIN_FAILURE,
-      payload: e.respose,
+      payload: e.response,
     });
   }
 }
