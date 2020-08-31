@@ -7,7 +7,7 @@ import {
   CLEAR_ERROR_FAILURE,
 } from '../types';
 
-const initailState = {
+const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   isLoading: false,
@@ -19,7 +19,7 @@ const initailState = {
   successMsg: '',
 };
 
-const authReducer = (state = initailState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -28,7 +28,7 @@ const authReducer = (state = initailState, action) => {
         isLoading: true,
       };
     case LOGIN_SUCCESS:
-      localStorage.set('token', action.payload.token);
+      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         ...action.payload,
@@ -46,9 +46,9 @@ const authReducer = (state = initailState, action) => {
         token: null,
         user: null,
         userId: null,
-        userRole: null,
         isAuthenticated: false,
         isLoading: false,
+        userRole: null,
         errorMsg: action.payload.data.msg,
       };
     case CLEAR_ERROR_REQUEST:
