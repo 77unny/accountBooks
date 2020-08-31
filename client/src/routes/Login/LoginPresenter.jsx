@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Form, Input, Button } from 'antd';
+import { Layout, Form, Input, Button, Alert } from 'antd';
 import 'antd/dist/antd.css';
 
 const layout = {
@@ -18,10 +18,11 @@ const tailLayout = {
   },
 };
 
-const LoginPresenter = ({ onFinish, onFinishFailed }) => {
+const LoginPresenter = ({ onChange, onSubmit, localMsg }) => {
   return (
     <Layout style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Form {...layout} name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
+      <Form {...layout} name="basic" onFinish={onSubmit}>
+        {localMsg && <Alert message={localMsg} type="error" showIcon style={{ marginBottom: '10px' }} />}
         <Form.Item
           label="Email"
           name="email"
@@ -32,7 +33,7 @@ const LoginPresenter = ({ onFinish, onFinishFailed }) => {
             },
           ]}
         >
-          <Input />
+          <Input name="email" onChange={onChange} />
         </Form.Item>
 
         <Form.Item
@@ -45,7 +46,7 @@ const LoginPresenter = ({ onFinish, onFinishFailed }) => {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password name="password" onChange={onChange} />
         </Form.Item>
 
         <Form.Item {...tailLayout}>

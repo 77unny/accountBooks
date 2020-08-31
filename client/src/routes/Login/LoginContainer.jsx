@@ -1,24 +1,45 @@
-import axios from 'axios';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginPresenter from './LoginPresenter';
+import { LOGIN_REQUEST } from '../../redux/types';
 
 const LoginContainer = () => {
-  const onFinish = values => {
-    const { email, password } = values;
-    console.log('Success:', values);
-    axios
-      .post(`${process.env.REACT_APP_API_LOGIN}`, {
-        email: email,
-        password: password,
-      })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+  const [localMsg, setLocalMsg] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const dispatch = useDispatch();
+
+  const { errorMsg } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    try {
+      setLocalMsg(errorMsg);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [errorMsg]);
+
+  const onChange = e => {
+    console.log(form);
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+  const onSubmit = e => {
+    const { email, password } = form;
+    const user = { email, password };
+    dispatch({
+      type: LOGIN_REQUEST,
+      payload: user,
+    });
   };
-  return <LoginPresenter onFinish={onFinish} onFinishFailed={onFinishFailed} />;
+
+  return <LoginPresenter onChange={onChange} onSubmit={onSubmit} localMsg={localMsg} />;
 };
 
 export default LoginContainer;
