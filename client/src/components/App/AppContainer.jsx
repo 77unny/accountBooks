@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import AppPresenter from './AppPresenter';
+import { LOGOUT_REQUEST } from '../../redux/types';
 
 const AppContainer = () => {
-  //로그인 확인 하는 로직이 필요함
+  const { isAuthenticated, user } = useSelector(state => state.auth);
 
-  return <AppPresenter isLoggedIn={false} />;
+  const dispatch = useDispatch();
+
+  const onLogout = useCallback(() => {
+    dispatch({
+      type: LOGOUT_REQUEST,
+    });
+  }, [dispatch]);
+
+  return <AppPresenter isLoggedIn={isAuthenticated} user={user} onLogout={onLogout} />;
 };
 
 export default AppContainer;
