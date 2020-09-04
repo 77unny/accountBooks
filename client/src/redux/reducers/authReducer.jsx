@@ -8,6 +8,9 @@ import {
   CLEAR_ERROR_REQUEST,
   CLEAR_ERROR_SUCCESS,
   CLEAR_ERROR_FAILURE,
+  USER_LOADING_SUCCESS,
+  USER_LOADING_FAILURE,
+  USER_LOADING_REQUEST,
 } from '../types';
 
 const initialState = {
@@ -67,7 +70,32 @@ const authReducer = (state = initialState, action) => {
         userRole: null,
         errorMsg: action.payload.data.msg,
       };
-
+    case USER_LOADING_REQUEST:
+      console.log('Redux : USER_LOADING_REQUEST');
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case USER_LOADING_SUCCESS:
+      console.log('Redux : USER_LOADING_SUCCECSS');
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: true,
+        user: action.payload,
+        userId: action.payload._id,
+        userName: action.payload.name,
+        userRole: action.payload.role,
+      };
+    case USER_LOADING_FAILURE:
+      console.log('Redux : USER_LOADING_FAILURE');
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: false,
+        user: null,
+        userRole: '',
+      };
     case CLEAR_ERROR_REQUEST:
     case CLEAR_ERROR_SUCCESS:
     case CLEAR_ERROR_FAILURE:
