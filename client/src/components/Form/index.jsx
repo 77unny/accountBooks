@@ -35,7 +35,7 @@ const FormComponent = () => {
     if (!fieldsValue.contents || !fieldsValue.contents.length) return alert('항목을 추가해주세요.');
     const values = {
       ...fieldsValue,
-      datePicker: fieldsValue['datePicker'].format('YYYY-MM-DD'),
+      createDate: fieldsValue['createDate'].format('YYYY-MM-DD'),
     };
     console.log(values);
   };
@@ -45,8 +45,8 @@ const FormComponent = () => {
       <Form name="time_related_controls" {...formItemLayout} onFinish={onFinish}>
         <Row gutter={24}>
           <Col span={8}>
-            <Form.Item name="datePicker" label="날짜" {...config}>
-              <DatePicker style={{ width: '100%' }} />
+            <Form.Item name="createDate" label="날짜" {...config}>
+              <DatePicker style={{ width: '100%' }} placeholder="날짜를 선택해주세요." />
             </Form.Item>
           </Col>
         </Row>
@@ -101,7 +101,7 @@ const FormComponent = () => {
                           placeholder="품목"
                           rules={[{ required: true, message: '항목이 비어있습니다.' }]}
                         >
-                          <Input name="item" type="text" />
+                          <Input name="item" type="text" placeholder="품목" />
                         </Form.Item>
                       </Col>
                     </Row>
@@ -115,7 +115,7 @@ const FormComponent = () => {
                           rules={[{ required: true, message: '항목이 비어있습니다.' }]}
                           {...formItemOtherLayout}
                         >
-                          <Input name="price" type="price" />
+                          <Input name="price" type="number" placeholder="금액" />
                         </Form.Item>
                       </Col>
                       <Col span={4}>
@@ -127,7 +127,7 @@ const FormComponent = () => {
                           rules={[{ required: true, message: '항목이 비어있습니다.' }]}
                           {...formItemOtherLayout}
                         >
-                          <Input name="fee" type="number" />
+                          <Input name="fee" type="number" placeholder="수수료" />
                         </Form.Item>
                       </Col>
                       <Col span={4}>
@@ -165,7 +165,7 @@ const FormComponent = () => {
                           fieldKey={[field.fieldKey, 'etc']}
                           label="비고"
                         >
-                          <Input name="etc" type="text" />
+                          <Input name="etc" type="text" placeholder="비고" />
                         </Form.Item>
                       </Col>
                     </Row>
