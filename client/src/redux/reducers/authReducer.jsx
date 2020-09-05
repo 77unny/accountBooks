@@ -51,7 +51,7 @@ const authReducer = (state = initialState, action) => {
         token: null,
         user: null,
         userId: null,
-        isAuthenticated: true,
+        isAuthenticated: false,
         isLoading: false,
         userRole: null,
         errorMsg: '',
@@ -71,13 +71,11 @@ const authReducer = (state = initialState, action) => {
         errorMsg: action.payload.data.msg,
       };
     case USER_LOADING_REQUEST:
-      console.log('Redux : USER_LOADING_REQUEST');
       return {
         ...state,
         isLoading: true,
       };
     case USER_LOADING_SUCCESS:
-      console.log('Redux : USER_LOADING_SUCCECSS');
       return {
         ...state,
         isLoading: false,
@@ -88,7 +86,6 @@ const authReducer = (state = initialState, action) => {
         userRole: action.payload.role,
       };
     case USER_LOADING_FAILURE:
-      console.log('Redux : USER_LOADING_FAILURE');
       return {
         ...state,
         isLoading: false,
