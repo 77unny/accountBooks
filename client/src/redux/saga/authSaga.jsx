@@ -71,7 +71,6 @@ const userLoadingAPI = token => {
 
 function* userLoading(action) {
   try {
-    console.log('userLoading', action.payload);
     const result = yield call(userLoadingAPI, action.payload);
     yield put({
       type: USER_LOADING_SUCCESS,

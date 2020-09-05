@@ -23,7 +23,6 @@ const LoginContainer = () => {
   }, [errorMsg]);
 
   const onChange = e => {
-    console.log(form);
     setForm({
       ...form,
       [e.target.name]: e.target.value,

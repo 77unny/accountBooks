@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AppPresenter from './AppPresenter';
 import { LOGOUT_REQUEST } from '../../redux/types';
