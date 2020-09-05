@@ -1,0 +1,11 @@
+export const formatter = value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+export const parser = value => value.replace(/\$\s?|(,*)/g, '');
+export const formLayout = colNum => {
+  return {
+    labelCol: {
+      sm: {
+        span: colNum,
+      },
+    },
+  };
+};
