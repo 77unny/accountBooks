@@ -12,8 +12,12 @@ function Dashboard() {
         <GridItem>유류비</GridItem>
         <GridItem>식대</GridItem>
         <GridItem>기타 부대비용</GridItem>
-        <GridItem>수입</GridItem>
+        <GridItem>부가세</GridItem>
         <GridItem>지출</GridItem>
+        <GridItem>수익</GridItem>
+        <GridItem>총 수익</GridItem>
+        <GridItem>0</GridItem>
+        <GridItem>0</GridItem>
         <GridItem>0</GridItem>
         <GridItem>0</GridItem>
         <GridItem>0</GridItem>
