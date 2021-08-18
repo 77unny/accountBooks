@@ -128,5 +128,6 @@
       "./src/pages/**/*.tsx",
       "./src/routers/**/*.tsx"
     ]
-  }
+  },
+  "proxy" : "http://localhost:4000"
 }
